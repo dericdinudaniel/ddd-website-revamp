@@ -1,68 +1,106 @@
 "use client";
 
-import React from "react";
+import React, { useRef, useState } from "react";
 import { Terminal } from "lucide-react";
-import { motion, useScroll, useTransform } from "motion/react";
+import { motion, useScroll, useMotionValueEvent } from "motion/react";
 import ThemeSwitcher from "./ThemeSwitcher";
 
 export default function Header() {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isScrollingDown, setIsScrollingDown] = useState(true);
+  const prevScrollY = useRef(0);
   const { scrollY } = useScroll();
 
-  // Width shrinks first
-  const headerWidth = useTransform(scrollY, [0, 30], ["100%", "80%"]);
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    setIsScrollingDown(latest > prevScrollY.current);
+    setIsScrolled(latest > 20);
+    prevScrollY.current = latest;
+  });
 
-  // Y offset happens after width scaling
-  const headerY = useTransform(scrollY, [30, 50], [0, 16]);
-
-  // Other transforms stay the same
-  const headerPadding = useTransform(scrollY, [30, 50], ["1rem", "0.5rem"]);
-  const headerBorderRadius = useTransform(scrollY, [30, 50], ["10px", "50px"]);
-  const headerBorderOpacity = useTransform(scrollY, [30, 50], [0, 0.95]);
-  const headerShadow = useTransform(
-    scrollY,
-    [30, 50],
-    ["0px 0px 0px rgba(0, 0, 0, 0)", "0px 5px 15px rgba(0, 255, 0, 0.5)"]
-  );
-
-  const textSize = useTransform(scrollY, [30, 50], ["2rem", "1.5rem"]);
-  const iconSize = useTransform(scrollY, [30, 50], [45, 35]);
+  const yDelay = isScrollingDown ? 0.2 : 0;
+  const horizontalDelay = isScrollingDown ? 0 : 0.2;
 
   return (
     <div className="relative w-full">
-      {/* This is a placeholder div to maintain layout space */}
+      {/* Placeholder to maintain layout space */}
       <div className="h-16"></div>
 
       <motion.header
         className="fixed top-0 left-0 right-0 z-50 mx-auto backdrop-blur-lg"
-        style={{
-          padding: headerPadding,
-          borderRadius: headerBorderRadius,
-          width: headerWidth,
-          boxShadow: headerShadow,
-          y: headerY,
+        initial={false}
+        animate={{
+          width: isScrolled ? "80%" : "100%",
+          padding: isScrolled ? "0.5rem" : "1rem",
+          borderRadius: isScrolled ? "50px" : "0px",
+          boxShadow: isScrolled
+            ? "0px 5px 15px var(--shadow)"
+            : "0px 0px 0px rgba(0, 0, 0, 0)",
+          y: isScrolled ? 16 : 0,
+          backgroundColor: isScrolled ? "var(--pill)" : "var(--background)",
         }}
         transition={{
-          type: "spring",
-          stiffness: 300,
-          damping: 30,
+          width: {
+            type: "spring",
+            stiffness: 300,
+            damping: 30,
+            delay: horizontalDelay,
+          },
+          padding: {
+            type: "spring",
+            stiffness: 300,
+            damping: 30,
+            delay: horizontalDelay,
+          },
+          borderRadius: {
+            type: "spring",
+            stiffness: 300,
+            damping: 30,
+            delay: horizontalDelay,
+          },
+          boxShadow: {
+            type: "spring",
+            stiffness: 300,
+            damping: 30,
+            delay: horizontalDelay,
+          },
+          y: { type: "spring", stiffness: 300, damping: 30, delay: yDelay },
+        }}
+        style={{
+          left: "50%",
+          x: "-50%",
         }}
       >
-        {/* Background element with Tailwind classes */}
+        {/* Background Border */}
         <motion.div
           className="absolute inset-0 ring-[1px] ring-border rounded-[inherit]"
-          style={{ opacity: headerBorderOpacity }}
+          initial={false}
+          animate={{
+            opacity: isScrolled ? 0.95 : 0,
+          }}
+          transition={{ duration: 0.3, delay: horizontalDelay }}
         />
 
         {/* Content */}
         <div className="relative z-10 flex justify-between items-center">
           <div className="flex items-center gap-x-1">
-            <motion.div style={{ width: iconSize, height: iconSize }}>
+            <motion.div
+              initial={false}
+              animate={{
+                width: isScrolled ? 35 : 45,
+                height: isScrolled ? 35 : 45,
+              }}
+              transition={{ duration: 0.3, delay: horizontalDelay }}
+            >
               <Terminal className="w-full h-full" />
             </motion.div>
             <motion.h1
               className="font-bold"
+              initial={false}
+              animate={{
+                fontSize: isScrolled ? "1.5rem" : "2rem",
+              }}
+              transition={{ duration: 0.3, delay: horizontalDelay }}
               style={{
-                fontSize: textSize,
                 lineHeight: 1.2,
               }}
             >
