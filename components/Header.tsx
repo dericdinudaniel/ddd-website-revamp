@@ -29,13 +29,17 @@ export default function Header() {
         className="fixed top-0 left-0 right-0 z-50 mx-auto backdrop-blur-lg"
         initial={false}
         animate={{
+          paddingTop: isScrolled ? ".5rem" : ".5rem",
+          paddingBottom: isScrolled ? ".5rem" : ".5rem",
+          paddingLeft: isScrolled ? "1rem" : "1.5rem",
+          paddingRight: isScrolled ? "1rem" : "1.5rem",
+
           width: isScrolled ? "80%" : "100%",
-          padding: isScrolled ? "0.5rem" : "1rem",
           borderRadius: isScrolled ? "50px" : "0px",
           boxShadow: isScrolled
             ? "0px 5px 15px var(--shadow)"
             : "0px 0px 0px rgba(0, 0, 0, 0)",
-          y: isScrolled ? 16 : 0,
+          y: isScrolled ? 10 : 10,
           backgroundColor: isScrolled ? "var(--pill)" : "var(--background)",
         }}
         transition={{
@@ -107,6 +111,7 @@ export default function Header() {
               DDD
             </motion.h1>
           </div>
+
           <ThemeSwitcher />
         </div>
       </motion.header>
