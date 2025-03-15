@@ -7,14 +7,23 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-jetbrains-mono);
 
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
+  --color-muted: var(--muted);
   --color-border: var(--border);
   --color-shadow: var(--shadow);
+  --color-pill: var(--pill);
 }
 
 @layer base {
   :root {
     --background: hsl(0 0% 95%);
     --foreground: hsl(0 0% 0%);
+    --primary: hsl(222, 100%, 84%);
+    --secondary: hsl(0 0% 0%);
+    --accent: hsl(0 0% 0%);
+    --muted: hsl(0 0% 0%);
     --border: color-mix(in hsl, var(--foreground) 20%, white);
     --shadow: color-mix(in hsl, var(--foreground) 20%, white);
     --pill: rgba(201, 201, 201, 0.346);
@@ -22,6 +31,10 @@
   html[data-theme="dark"] {
     --background: hsl(0 0% 5%);
     --foreground: rgb(255, 255, 255);
+    --primary: hsl(221, 100%, 50%);
+    --secondary: hsl(0 0% 100%);
+    --accent: hsl(0 0% 100%);
+    --muted: hsl(0 0% 100%);
     --border: color-mix(in hsl, var(--foreground) 30%, black);
     --shadow: color-mix(in hsl, var(--foreground) 30%, black);
     --pill: rgba(61, 61, 61, 0.346);

@@ -6,7 +6,7 @@ import { Sun, Moon, Monitor, Loader } from "lucide-react";
 import { motion } from "motion/react";
 
 const ThemeSwitcher = () => {
-  const { setTheme, resolvedTheme } = useTheme();
+  const { theme, setTheme, resolvedTheme } = useTheme();
   const [isOpen, setIsOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
 
@@ -25,7 +25,7 @@ const ThemeSwitcher = () => {
       // Show a loading spinner while the theme is resolving
       return <Loader className="animate-spin" />;
     }
-    if (resolvedTheme === "system") return <Monitor />;
+    if (theme === "system") return <Monitor />;
     return resolvedTheme === "dark" ? <Moon /> : <Sun />;
   };
 

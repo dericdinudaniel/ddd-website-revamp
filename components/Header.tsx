@@ -2,15 +2,30 @@
 
 import React, { useRef, useState } from "react";
 import { Terminal } from "lucide-react";
-import { motion, useScroll, useMotionValueEvent } from "motion/react";
+import {
+  motion,
+  useScroll,
+  useMotionValueEvent,
+  useTransform,
+  useSpring,
+} from "motion/react";
 import ThemeSwitcher from "./ThemeSwitcher";
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const { scrollY, scrollYProgress } = useScroll();
   const prevScrollY = useRef(0);
-  const { scrollY } = useScroll();
 
   const animationDuration = 0.3;
+
+  // Smooth progress animation using spring
+  const progressWidth = useSpring(
+    useTransform(scrollYProgress, [0, 1], ["0%", "100%"]),
+    {
+      stiffness: 500,
+      damping: 50,
+    }
+  );
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     setIsScrolled(latest > 20);
@@ -31,7 +46,7 @@ export default function Header() {
           paddingLeft: isScrolled ? "1rem" : "1.5rem",
           paddingRight: isScrolled ? "1rem" : "1.5rem",
           width: isScrolled ? "80%" : "100%",
-          borderRadius: isScrolled ? "50px" : "0px",
+          borderRadius: isScrolled ? "70px" : "20px",
           boxShadow: isScrolled
             ? "0px 5px 15px var(--shadow)"
             : "0px 0px 0px rgba(0, 0, 0, 0)",
@@ -57,6 +72,16 @@ export default function Header() {
           }}
           transition={{ duration: animationDuration }}
         />
+
+        {/* Progress Fill */}
+        {isScrolled && (
+          <motion.div
+            className="absolute inset-0 bg-primary/50 rounded-[inherit]"
+            style={{ width: progressWidth }}
+            initial={{ width: "0%" }}
+            transition={{ duration: animationDuration, ease: "easeOut" }}
+          />
+        )}
 
         {/* Content */}
         <div className="relative z-10 flex justify-between items-center">
