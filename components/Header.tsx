@@ -7,18 +7,15 @@ import ThemeSwitcher from "./ThemeSwitcher";
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isScrollingDown, setIsScrollingDown] = useState(true);
   const prevScrollY = useRef(0);
   const { scrollY } = useScroll();
 
+  const animationDuration = 0.3;
+
   useMotionValueEvent(scrollY, "change", (latest) => {
-    setIsScrollingDown(latest > prevScrollY.current);
     setIsScrolled(latest > 20);
     prevScrollY.current = latest;
   });
-
-  const yDelay = isScrollingDown ? 0.2 : 0;
-  const horizontalDelay = isScrollingDown ? 0 : 0.2;
 
   return (
     <div className="relative w-full">
@@ -29,45 +26,22 @@ export default function Header() {
         className="fixed top-0 left-0 right-0 z-50 mx-auto backdrop-blur-lg"
         initial={false}
         animate={{
-          paddingTop: isScrolled ? ".5rem" : ".5rem",
-          paddingBottom: isScrolled ? ".5rem" : ".5rem",
+          paddingTop: ".5rem",
+          paddingBottom: ".5rem",
           paddingLeft: isScrolled ? "1rem" : "1.5rem",
           paddingRight: isScrolled ? "1rem" : "1.5rem",
-
           width: isScrolled ? "80%" : "100%",
           borderRadius: isScrolled ? "50px" : "0px",
           boxShadow: isScrolled
             ? "0px 5px 15px var(--shadow)"
             : "0px 0px 0px rgba(0, 0, 0, 0)",
-          y: isScrolled ? 10 : 10,
+          y: 10,
           backgroundColor: isScrolled ? "var(--pill)" : "var(--background)",
         }}
         transition={{
-          width: {
-            type: "spring",
-            stiffness: 300,
-            damping: 30,
-            delay: horizontalDelay,
-          },
-          padding: {
-            type: "spring",
-            stiffness: 300,
-            damping: 30,
-            delay: horizontalDelay,
-          },
-          borderRadius: {
-            type: "spring",
-            stiffness: 300,
-            damping: 30,
-            delay: horizontalDelay,
-          },
-          boxShadow: {
-            type: "spring",
-            stiffness: 300,
-            damping: 30,
-            delay: horizontalDelay,
-          },
-          y: { type: "spring", stiffness: 300, damping: 30, delay: yDelay },
+          type: "spring",
+          stiffness: 300,
+          damping: 30,
         }}
         style={{
           left: "50%",
@@ -81,7 +55,7 @@ export default function Header() {
           animate={{
             opacity: isScrolled ? 0.95 : 0,
           }}
-          transition={{ duration: 0.3, delay: horizontalDelay }}
+          transition={{ duration: animationDuration }}
         />
 
         {/* Content */}
@@ -93,7 +67,7 @@ export default function Header() {
                 width: isScrolled ? 35 : 45,
                 height: isScrolled ? 35 : 45,
               }}
-              transition={{ duration: 0.3, delay: horizontalDelay }}
+              transition={{ duration: animationDuration }}
             >
               <Terminal className="w-full h-full" />
             </motion.div>
@@ -103,7 +77,7 @@ export default function Header() {
               animate={{
                 fontSize: isScrolled ? "1.5rem" : "2rem",
               }}
-              transition={{ duration: 0.3, delay: horizontalDelay }}
+              transition={{ duration: animationDuration }}
               style={{
                 lineHeight: 1.2,
               }}
