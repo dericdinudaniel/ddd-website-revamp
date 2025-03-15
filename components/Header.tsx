@@ -15,10 +15,6 @@ export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const { scrollY, scrollYProgress } = useScroll();
 
-  const animationDuration = 0.3;
-  const delayDuration = 0.2;
-
-  // Smooth progress animation using spring
   const progressWidth = useSpring(
     useTransform(scrollYProgress, [0, 1], ["0%", "100%"]),
     {
@@ -30,6 +26,10 @@ export default function Header() {
   useMotionValueEvent(scrollY, "change", (latest) => {
     setIsScrolled(latest > 20);
   });
+
+  const animationDuration = 0.3;
+  const effectDelayDuration = isScrolled ? 0.2 : 0;
+  const formationDelayDuration = isScrolled ? 0 : 0.2;
 
   return (
     <div className="relative w-full">
@@ -56,8 +56,12 @@ export default function Header() {
           type: "spring",
           stiffness: 300,
           damping: 30,
-          boxShadow: { duration: animationDuration, delay: delayDuration },
-          backgroundColor: { delay: delayDuration },
+          delay: formationDelayDuration,
+          boxShadow: {
+            duration: animationDuration,
+            delay: effectDelayDuration,
+          },
+          backgroundColor: { delay: effectDelayDuration },
         }}
         style={{
           left: "50%",
@@ -71,7 +75,10 @@ export default function Header() {
           animate={{
             opacity: isScrolled ? 0.95 : 0,
           }}
-          transition={{ duration: animationDuration, delay: delayDuration }}
+          transition={{
+            duration: animationDuration,
+            delay: effectDelayDuration,
+          }}
         />
 
         {/* Progress Fill */}
@@ -83,7 +90,7 @@ export default function Header() {
             transition={{
               duration: animationDuration,
               ease: "easeOut",
-              delay: delayDuration,
+              delay: effectDelayDuration,
             }}
           />
         )}
@@ -97,7 +104,10 @@ export default function Header() {
                 width: isScrolled ? 35 : 45,
                 height: isScrolled ? 35 : 45,
               }}
-              transition={{ duration: animationDuration }}
+              transition={{
+                duration: animationDuration,
+                delay: formationDelayDuration,
+              }}
             >
               <Terminal className="w-full h-full" />
             </motion.div>
@@ -107,7 +117,10 @@ export default function Header() {
               animate={{
                 fontSize: isScrolled ? "1.5rem" : "2rem",
               }}
-              transition={{ duration: animationDuration }}
+              transition={{
+                duration: animationDuration,
+                delay: formationDelayDuration,
+              }}
               style={{
                 lineHeight: 1.2,
               }}
