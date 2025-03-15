@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import { Terminal } from "lucide-react";
 import {
   motion,
@@ -14,9 +14,9 @@ import ThemeSwitcher from "./ThemeSwitcher";
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const { scrollY, scrollYProgress } = useScroll();
-  const prevScrollY = useRef(0);
 
   const animationDuration = 0.3;
+  const delayDuration = 0.2;
 
   // Smooth progress animation using spring
   const progressWidth = useSpring(
@@ -29,7 +29,6 @@ export default function Header() {
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     setIsScrolled(latest > 20);
-    prevScrollY.current = latest;
   });
 
   return (
@@ -46,10 +45,10 @@ export default function Header() {
           paddingLeft: isScrolled ? "1rem" : "1.5rem",
           paddingRight: isScrolled ? "1rem" : "1.5rem",
           width: isScrolled ? "80%" : "100%",
-          borderRadius: isScrolled ? "70px" : "20px",
+          borderRadius: isScrolled ? "70px" : "0px",
           boxShadow: isScrolled
             ? "0px 5px 15px var(--shadow)"
-            : "0px 0px 0px rgba(0, 0, 0, 0)",
+            : "0px 0px 0px var(--shadow)",
           y: 10,
           backgroundColor: isScrolled ? "var(--pill)" : "var(--background)",
         }}
@@ -57,6 +56,8 @@ export default function Header() {
           type: "spring",
           stiffness: 300,
           damping: 30,
+          boxShadow: { duration: animationDuration, delay: delayDuration },
+          backgroundColor: { delay: delayDuration },
         }}
         style={{
           left: "50%",
@@ -70,7 +71,7 @@ export default function Header() {
           animate={{
             opacity: isScrolled ? 0.95 : 0,
           }}
-          transition={{ duration: animationDuration }}
+          transition={{ duration: animationDuration, delay: delayDuration }}
         />
 
         {/* Progress Fill */}
@@ -79,7 +80,11 @@ export default function Header() {
             className="absolute inset-0 bg-primary/50 rounded-[inherit]"
             style={{ width: progressWidth }}
             initial={{ width: "0%" }}
-            transition={{ duration: animationDuration, ease: "easeOut" }}
+            transition={{
+              duration: animationDuration,
+              ease: "easeOut",
+              delay: delayDuration,
+            }}
           />
         )}
 
