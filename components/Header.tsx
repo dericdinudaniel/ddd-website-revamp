@@ -2,26 +2,12 @@
 
 import React, { useState } from "react";
 import { Terminal } from "lucide-react";
-import {
-  motion,
-  useScroll,
-  useMotionValueEvent,
-  useTransform,
-  useSpring,
-} from "motion/react";
+import { motion, useScroll, useMotionValueEvent } from "motion/react";
 import ThemeSwitcher from "./ThemeSwitcher";
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const { scrollY, scrollYProgress } = useScroll();
-
-  const progressWidth = useSpring(
-    useTransform(scrollYProgress, [0, 1], ["0%", "100%"]),
-    {
-      stiffness: 500,
-      damping: 50,
-    }
-  );
+  const { scrollY } = useScroll();
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     setIsScrolled(latest > 20);
@@ -50,7 +36,7 @@ export default function Header() {
             ? "0px 5px 15px var(--shadow)"
             : "0px 0px 0px var(--shadow)",
           y: 10,
-          backgroundColor: isScrolled ? "var(--pill)" : "var(--background)",
+          backgroundColor: isScrolled ? "var(--pill)" : "var(--header)",
         }}
         transition={{
           type: "spring",
@@ -61,7 +47,10 @@ export default function Header() {
             duration: animationDuration,
             delay: effectDelayDuration,
           },
-          backgroundColor: { delay: effectDelayDuration },
+          backgroundColor: {
+            delay: effectDelayDuration,
+            duration: animationDuration,
+          },
         }}
         style={{
           left: "50%",
@@ -80,20 +69,6 @@ export default function Header() {
             delay: effectDelayDuration,
           }}
         />
-
-        {/* Progress Fill */}
-        {isScrolled && (
-          <motion.div
-            className="absolute inset-0 bg-primary/50 rounded-[inherit]"
-            style={{ width: progressWidth }}
-            initial={{ width: "0%" }}
-            transition={{
-              duration: animationDuration,
-              ease: "easeOut",
-              delay: effectDelayDuration,
-            }}
-          />
-        )}
 
         {/* Content */}
         <div className="relative z-10 flex justify-between items-center">
