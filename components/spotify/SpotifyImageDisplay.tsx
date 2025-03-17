@@ -19,9 +19,9 @@ export default function SpotifyImageDisplay({
       <Image
         src={imgUrl}
         alt={alt}
-        width={48}
-        height={48}
-        className="w-12 h-12 rounded object-cover"
+        width={640}
+        height={640}
+        className="w-14 h-14 rounded object-cover"
       />
     </a>
   );
