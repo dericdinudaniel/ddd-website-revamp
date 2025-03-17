@@ -53,11 +53,11 @@ export default function Header() {
           boxShadow: isScrolled
             ? "0px 5px 15px var(--shadow)"
             : "0px 0px 0px var(--shadow)",
-          y: 10,
           backgroundColor: isScrolled ? "var(--pill)" : "var(--header)",
         }}
         transition={transition}
         style={{
+          y: 10,
           paddingTop: ".5rem",
           paddingBottom: ".5rem",
           left: "50%",

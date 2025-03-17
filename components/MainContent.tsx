@@ -17,6 +17,7 @@ export default function MainContent() {
         <TopTracks />
         <TopArtists />
       </div>
+      <div className="h-24" />
     </main>
   );
 }

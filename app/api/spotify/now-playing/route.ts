@@ -3,11 +3,19 @@ import { getNowPlaying } from "@/lib/spotify";
 
 export async function GET() {
   const response = await getNowPlaying();
-  if (!response.ok) {
+
+  if (!response.ok || response.status === 204) {
+    // If no content (204) or response not ok, return not playing
     return NextResponse.json({ isPlaying: false }, { status: 200 });
   }
 
-  const song = await response.json();
+  // Check if the response body is empty
+  const text = await response.text();
+  if (!text) {
+    return NextResponse.json({ isPlaying: false }, { status: 200 });
+  }
+
+  const song = JSON.parse(text);
 
   return NextResponse.json({
     isPlaying: song.is_playing,
