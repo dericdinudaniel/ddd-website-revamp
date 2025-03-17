@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import { Terminal } from "lucide-react";
 import { motion, useScroll, useMotionValueEvent } from "motion/react";
 import ThemeSwitcher from "./ThemeSwitcher";
@@ -9,25 +9,43 @@ export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const { scrollY } = useScroll();
 
-  useMotionValueEvent(scrollY, "change", (latest) => {
+  const handleScroll = useCallback((latest: number) => {
     setIsScrolled(latest > 20);
-  });
+  }, []);
+
+  useMotionValueEvent(scrollY, "change", handleScroll);
 
   const animationDuration = 0.3;
   const effectDelayDuration = isScrolled ? 0.2 : 0;
   const formationDelayDuration = isScrolled ? 0 : 0.2;
 
+  const transition = useMemo(
+    () => ({
+      type: "spring",
+      stiffness: 300,
+      damping: 30,
+      delay: formationDelayDuration,
+      boxShadow: {
+        duration: animationDuration,
+        delay: effectDelayDuration,
+      },
+      backgroundColor: {
+        delay: effectDelayDuration,
+        duration: animationDuration,
+      },
+    }),
+    [formationDelayDuration, effectDelayDuration]
+  );
+
   return (
     <div className="relative w-full">
       {/* Placeholder to maintain layout space */}
-      <div className="h-16"></div>
+      {/* <div className="h-20" /> */}
 
       <motion.header
         className="fixed top-0 left-0 right-0 z-50 mx-auto backdrop-blur-lg"
         initial={false}
         animate={{
-          paddingTop: ".5rem",
-          paddingBottom: ".5rem",
           paddingLeft: isScrolled ? "1rem" : "1.5rem",
           paddingRight: isScrolled ? "1rem" : "1.5rem",
           width: isScrolled ? "80%" : "100%",
@@ -38,23 +56,14 @@ export default function Header() {
           y: 10,
           backgroundColor: isScrolled ? "var(--pill)" : "var(--header)",
         }}
-        transition={{
-          type: "spring",
-          stiffness: 300,
-          damping: 30,
-          delay: formationDelayDuration,
-          boxShadow: {
-            duration: animationDuration,
-            delay: effectDelayDuration,
-          },
-          backgroundColor: {
-            delay: effectDelayDuration,
-            duration: animationDuration,
-          },
-        }}
+        transition={transition}
         style={{
+          paddingTop: ".5rem",
+          paddingBottom: ".5rem",
           left: "50%",
           x: "-50%",
+          willChange:
+            "padding, width, borderRadius, boxShadow, backgroundColor",
         }}
       >
         {/* Background Border */}
