@@ -36,12 +36,15 @@ const NowPlayingContent = ({
   }
 
   return (
-    <SongDisplay
-      title={data.title}
-      songUrl={data.songUrl}
-      albumImageUrl={data.albumImageUrl}
-      artists={data.artists}
-    />
+    <div className="px-2">
+      <SongDisplay
+        title={data.title}
+        songUrl={data.songUrl}
+        albumImageUrl={data.albumImageUrl}
+        artists={data.artists}
+        size="small"
+      />
+    </div>
   );
 };
 

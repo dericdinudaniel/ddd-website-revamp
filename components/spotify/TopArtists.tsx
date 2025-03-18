@@ -9,8 +9,6 @@ export default function TopArtists() {
 
   if (isLoading) return <p>Loading...</p>;
 
-  console.log(data);
-
   return (
     <div className="grid grid-cols-2 gap-4">
       {data.map((artist: any) => (

@@ -5,6 +5,7 @@ type SongDisplayProps = {
   songUrl: string;
   albumImageUrl: string;
   artists: { name: string; url: string }[];
+  size?: "small" | "medium" | "large";
 };
 
 export default function SongDisplay({
@@ -12,10 +13,11 @@ export default function SongDisplay({
   songUrl,
   albumImageUrl,
   artists,
+  size = "medium",
 }: SongDisplayProps) {
   return (
     <div className="flex items-center space-x-4">
-      <SpotifyImageDisplay imgUrl={albumImageUrl} alt={title} />
+      <SpotifyImageDisplay imgUrl={albumImageUrl} alt={title} size={size} />
       <div className="flex flex-col">
         <a
           href={songUrl}

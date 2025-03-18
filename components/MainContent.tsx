@@ -5,7 +5,7 @@ import TopArtists from "./spotify/TopArtists";
 export default function MainContent() {
   return (
     <main className="flex flex-col min-h-screen items-center justify-start overflow-auto">
-      <div className="flex flex-col justify-center items-center text-center h-screen">
+      <div className="flex flex-col justify-center items-center text-center h-screen w-screen">
         <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-bold">
           Deric Dinu Daniel
         </h1>

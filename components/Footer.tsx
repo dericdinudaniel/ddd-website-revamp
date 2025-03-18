@@ -57,7 +57,7 @@ export default function Footer() {
         }}
         transition={transition}
         style={{
-          borderRadius: "70px",
+          borderRadius: "50px",
           willChange:
             "padding, borderRadius, boxShadow, backgroundColor, transform",
           // transform: "translateX(-50%)",

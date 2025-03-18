@@ -3,11 +3,19 @@ import Image from "next/image";
 type SpotifyImageDisplayProps = {
   imgUrl: string;
   alt: string;
+  size?: "small" | "medium" | "large";
+};
+
+const sizeClasses = {
+  small: "w-12 h-12",
+  medium: "w-14 h-14",
+  large: "w-20 h-20",
 };
 
 export default function SpotifyImageDisplay({
   imgUrl,
   alt = "Spotify Image",
+  size = "medium",
 }: SpotifyImageDisplayProps) {
   return (
     <a
@@ -21,7 +29,7 @@ export default function SpotifyImageDisplay({
         alt={alt}
         width={640}
         height={640}
-        className="w-14 h-14 rounded object-cover"
+        className={`${sizeClasses[size]} rounded object-cover`}
       />
     </a>
   );
