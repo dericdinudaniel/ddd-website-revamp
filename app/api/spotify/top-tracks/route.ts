@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { NextResponse } from "next/server";
 import { getTopTracks } from "@/lib/spotify";
 
@@ -16,3 +17,4 @@ export async function GET() {
   }));
 
   return NextResponse.json(formattedTracks);
+}

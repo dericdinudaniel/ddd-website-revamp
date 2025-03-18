@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { useNowPlaying } from "@/lib/hooks/useSpotify";
@@ -28,7 +29,7 @@ const NowPlayingContent = ({
   if (!isPlaying) {
     return (
       <div className="flex items-center space-x-4">
-        <BsSpotify className="text-4xl" />
+        <BsSpotify className="text-3xl" />
         <p className="text-md">Not currently playing</p>
       </div>
     );
@@ -49,10 +50,10 @@ export default function NowPlaying() {
 
   return (
     <div
-      className="p-2 rounded-lg bg-pill backdrop-blur-lg"
-      style={{ boxShadow: "0px 5px 15px var(--shadow)" }}
+      className="p-2 px-4 rounded-lg"
+      // style={{ boxShadow: "0px 5px 15px var(--shadow)" }}
     >
-      <div className="absolute inset-0 ring-[1px] ring-border rounded-[inherit]" />
+      {/* <div className="absolute inset-0 ring-[1px] ring-border rounded-[inherit]" /> */}
       <NowPlayingContent
         isLoading={isLoading}
         isPlaying={!!data?.isPlaying}
