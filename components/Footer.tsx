@@ -18,7 +18,7 @@ export default function Footer() {
     setIsBottom(progress >= 1);
   });
 
-  const animationDuration = 0.3;
+  const animationDuration = 0.2;
   const effectDelayDuration = isScrolled && !isBottom ? 0.2 : 0;
   const formationDelayDuration = isScrolled && !isBottom ? 0 : 0.2;
 

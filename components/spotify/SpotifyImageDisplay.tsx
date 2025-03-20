@@ -7,9 +7,9 @@ type SpotifyImageDisplayProps = {
 };
 
 const sizeClasses = {
-  small: "w-12 h-12",
-  medium: "w-14 h-14",
-  large: "w-20 h-20",
+  small: "size-10 lg:size-12",
+  medium: "size-12 lg:size-14",
+  large: "size-18 lg:size-20",
 };
 
 export default function SpotifyImageDisplay({

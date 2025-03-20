@@ -23,7 +23,7 @@ export default function SongDisplay({
           href={songUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-lg font-bold hover:underline text-left"
+          className="font-bold hover:underline text-left text-sm md:text-base xl:text-lg"
         >
           {title}
         </a>
@@ -34,7 +34,7 @@ export default function SongDisplay({
                 href={artist.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:underline"
+                className="hover:underline text-xs md:text-sm xl:text-base"
               >
                 {artist.name}
               </a>

@@ -15,7 +15,7 @@ export default function Header() {
 
   useMotionValueEvent(scrollY, "change", handleScroll);
 
-  const animationDuration = 0.3;
+  const animationDuration = 0.2;
   const effectDelayDuration = isScrolled ? 0.2 : 0;
   const formationDelayDuration = isScrolled ? 0 : 0.2;
 
