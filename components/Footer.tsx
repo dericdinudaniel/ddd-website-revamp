@@ -53,14 +53,12 @@ export default function Footer() {
               : "0px 0px 0px var(--shadow)",
           backgroundColor:
             isScrolled && !isBottom ? "var(--pill)" : "var(--header)",
-          // x: isScrolled && !isBottom ? "-10%" : "0%",
         }}
         transition={transition}
         style={{
           borderRadius: "50px",
           willChange:
             "padding, borderRadius, boxShadow, backgroundColor, transform",
-          // transform: "translateX(-50%)",
         }}
       >
         {/* Background Border */}

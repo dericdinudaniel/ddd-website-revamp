@@ -36,6 +36,7 @@ const NowPlayingContent = ({
         albumImageUrl={data.albumImageUrl}
         artists={data.artists}
         size="small"
+        maxWidth={500}
       />
     </div>
   );

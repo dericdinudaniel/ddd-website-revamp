@@ -29,6 +29,7 @@ export default function TopTracks() {
           songUrl={track.songUrl}
           albumImageUrl={track.albumImageUrl}
           artists={track.artists}
+          maxWidth={400}
         />
       ))}
     </div>

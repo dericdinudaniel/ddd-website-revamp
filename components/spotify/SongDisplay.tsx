@@ -1,4 +1,5 @@
 import SpotifyImageDisplay from "./SpotifyImageDisplay";
+import ScrollingText from "../ScrollingText";
 
 type SongDisplayProps = {
   title: string;
@@ -6,6 +7,8 @@ type SongDisplayProps = {
   albumImageUrl: string;
   artists: { name: string; url: string }[];
   size?: "small" | "medium" | "large";
+  maxWidth?: number;
+  pauseDuration?: number;
 };
 
 export default function SongDisplay({
@@ -14,33 +17,54 @@ export default function SongDisplay({
   albumImageUrl,
   artists,
   size = "medium",
+  maxWidth = 150,
+  pauseDuration = 1,
 }: SongDisplayProps) {
+  const artistList = artists.map((artist, index) => (
+    <span key={artist.url}>
+      <a
+        href={artist.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="hover:underline text-xs md:text-sm xl:text-base"
+      >
+        {artist.name}
+      </a>
+      {index < artists.length - 1 && ", "}
+    </span>
+  ));
+
   return (
     <div className="flex items-center space-x-4">
       <SpotifyImageDisplay imgUrl={albumImageUrl} alt={title} size={size} />
       <div className="flex flex-col">
-        <a
-          href={songUrl}
-          target="_blank"
-          rel="noopener noreferrer"
+        <ScrollingText
+          maxWidth={maxWidth}
+          pauseDuration={pauseDuration}
+          scrollSpeed={20}
           className="font-bold hover:underline text-left text-sm md:text-base xl:text-lg"
         >
-          {title}
-        </a>
-        <div className="text-sm text-gray-500 text-left">
-          {artists.map((artist, index) => (
-            <span key={artist.url}>
-              <a
-                href={artist.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:underline text-xs md:text-sm xl:text-base"
-              >
-                {artist.name}
-              </a>
-              {index < artists.length - 1 && ", "}
-            </span>
-          ))}
+          <a
+            href={songUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-bold hover:underline text-left text-sm md:text-base xl:text-lg"
+          >
+            {title}
+          </a>
+        </ScrollingText>
+        <div
+          className="text-sm text-gray-500 text-left overflow-hidden whitespace-nowrap relative"
+          style={{ maxWidth }}
+        >
+          <ScrollingText
+            maxWidth={maxWidth}
+            pauseDuration={pauseDuration}
+            scrollSpeed={20}
+            className="text-xs md:text-sm xl:text-base"
+          >
+            {artistList}
+          </ScrollingText>
         </div>
       </div>
     </div>
