@@ -10,7 +10,7 @@ export default function Header() {
   const { scrollY } = useScroll();
 
   const handleScroll = useCallback((latest: number) => {
-    setIsScrolled(latest > 20);
+    setIsScrolled(latest > 40);
   }, []);
 
   useMotionValueEvent(scrollY, "change", handleScroll);
