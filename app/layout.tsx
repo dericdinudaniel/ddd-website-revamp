@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
 import { ThemeProvider } from "next-themes";
-import { Geist, Geist_Mono, JetBrains_Mono } from "next/font/google";
+import {
+  Geist,
+  Geist_Mono,
+  JetBrains_Mono,
+  Instrument_Serif,
+} from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -17,6 +22,19 @@ const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains-mono",
   subsets: ["latin"],
 });
+const instrumentSerif = Instrument_Serif({
+  variable: "--font-instrument-serif",
+  subsets: ["latin"],
+  weight: "400",
+});
+
+const fonts = [
+  geistSans.variable,
+  geistMono.variable,
+  jetbrainsMono.variable,
+  instrumentSerif.variable,
+];
+const fontVariables = fonts.join(" ");
 
 export const metadata: Metadata = {
   title: "Deric Dinu Daniel",
@@ -36,9 +54,7 @@ export default function RootLayout({
           src="//unpkg.com/react-scan/dist/auto.global.js"
         />
       </head> */}
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} ${jetbrainsMono.variable} antialiased`}
-      >
+      <body className={`${fontVariables} antialiased`}>
         <ThemeProvider enableSystem={true} disableTransitionOnChange={true}>
           <Header />
           {children}
