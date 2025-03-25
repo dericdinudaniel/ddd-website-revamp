@@ -1,6 +1,7 @@
 import Image from "next/image";
 
 type SpotifyImageDisplayProps = {
+  href?: string;
   imgUrl: string;
   alt: string;
   size?: "small" | "medium" | "large";
@@ -16,13 +17,14 @@ const sizeClasses = {
 };
 
 export default function SpotifyImageDisplay({
+  href,
   imgUrl,
   alt = "Spotify Image",
   size = "medium",
 }: SpotifyImageDisplayProps) {
   return (
     <a
-      href={imgUrl}
+      href={href}
       target="_blank"
       rel="noopener noreferrer"
       className="hover:scale-90 transition-transform duration-200 "

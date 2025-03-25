@@ -36,7 +36,12 @@ export default function SongDisplay({
 
   return (
     <div className="flex items-center space-x-4">
-      <SpotifyImageDisplay imgUrl={albumImageUrl} alt={title} size={size} />
+      <SpotifyImageDisplay
+        href={songUrl}
+        imgUrl={albumImageUrl}
+        alt={title}
+        size={size}
+      />
       <div className="flex flex-col">
         <ScrollingText
           maxWidth={maxWidth}

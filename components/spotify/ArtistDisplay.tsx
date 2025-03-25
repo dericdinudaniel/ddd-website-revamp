@@ -16,7 +16,7 @@ export default function ArtistDisplay({
 }: ArtistDisplayProps) {
   return (
     <div className="flex items-center space-x-4">
-      <SpotifyImageDisplay imgUrl={imageUrl} alt={name} />
+      <SpotifyImageDisplay href={url} imgUrl={imageUrl} alt={name} />
       <ScrollingText maxWidth={maxWidth}>
         <a
           href={url}
