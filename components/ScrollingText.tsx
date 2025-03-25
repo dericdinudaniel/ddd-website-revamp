@@ -1,9 +1,8 @@
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { motion } from "motion/react";
 
 type ScrollingTextProps = {
   children: React.ReactNode;
-  href?: string;
   maxWidth?: number;
   pauseDuration?: number;
   scrollSpeed?: number;
@@ -19,33 +18,45 @@ export default function ScrollingText({
 }: ScrollingTextProps) {
   const textRef = useRef<HTMLDivElement>(null);
   const [shouldScroll, setShouldScroll] = useState(false);
+  const [textWidth, setTextWidth] = useState(0);
 
   useEffect(() => {
+    const checkScrollNecessity = () => {
+      if (textRef.current) {
+        const currentWidth = textRef.current.scrollWidth;
+        setTextWidth(currentWidth);
+        setShouldScroll(currentWidth > maxWidth);
+      }
+    };
+
+    // Use a slight delay to ensure rendering is complete
+    const timeoutId = setTimeout(checkScrollNecessity, 0);
+
+    // Optionally add a resize observer for dynamic content
+    const resizeObserver = new ResizeObserver(checkScrollNecessity);
     if (textRef.current) {
-      setShouldScroll(textRef.current.scrollWidth > maxWidth);
+      resizeObserver.observe(textRef.current);
     }
+
+    return () => {
+      clearTimeout(timeoutId);
+      resizeObserver.disconnect();
+    };
   }, [children, maxWidth]);
+
+  const scrollDistance = Math.max(0, textWidth - maxWidth);
+  const scrollDuration = (scrollDistance / scrollSpeed) * 2 + 2 * pauseDuration;
 
   const content = shouldScroll ? (
     <motion.div
       className={`block ${className}`}
       ref={textRef}
       animate={{
-        x: [
-          0,
-          -Math.max(0, (textRef.current?.scrollWidth ?? 0) - maxWidth),
-          -Math.max(0, (textRef.current?.scrollWidth ?? 0) - maxWidth),
-          0,
-          0,
-        ],
+        x: [0, -scrollDistance, -scrollDistance, 0, 0],
       }}
       transition={{
         repeat: Infinity,
-        duration:
-          (Math.max(0, (textRef.current?.scrollWidth ?? 0) - maxWidth) /
-            scrollSpeed) *
-            2 +
-          2 * pauseDuration,
+        duration: scrollDuration,
         ease: "linear",
         times: [0, 0.4, 0.6, 1],
       }}

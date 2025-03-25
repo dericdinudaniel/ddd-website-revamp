@@ -41,7 +41,6 @@ export default function SongDisplay({
         <ScrollingText
           maxWidth={maxWidth}
           pauseDuration={pauseDuration}
-          scrollSpeed={20}
           className="font-bold hover:underline text-left text-sm md:text-base xl:text-lg"
         >
           <a
@@ -60,7 +59,6 @@ export default function SongDisplay({
           <ScrollingText
             maxWidth={maxWidth}
             pauseDuration={pauseDuration}
-            scrollSpeed={20}
             className="text-xs md:text-sm xl:text-base"
           >
             {artistList}
