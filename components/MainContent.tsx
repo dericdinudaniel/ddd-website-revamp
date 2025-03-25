@@ -1,6 +1,7 @@
 import React from "react";
 import TopTracks from "./spotify/TopTracks";
 import TopArtists from "./spotify/TopArtists";
+// import Experience from "./Experience";
 
 export default function MainContent() {
   return (
@@ -14,6 +15,7 @@ export default function MainContent() {
         </p>
       </div>
       <div className="flex flex-col px-4 gap-y-20 items-center">
+        {/* <Experience /> */}
         <TopTracks />
         <TopArtists />
       </div>

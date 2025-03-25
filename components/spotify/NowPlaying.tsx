@@ -5,15 +5,18 @@ import { useNowPlaying } from "@/lib/hooks/useSpotify";
 import SongDisplay from "@/components/spotify/SongDisplay";
 import { BsSpotify } from "react-icons/bs";
 import { SkeletonSongDisplay } from "./Skeletons";
+import { useEffect, useState } from "react";
 
 const NowPlayingContent = ({
   isLoading,
   isPlaying,
   data,
+  maxWidth,
 }: {
   isLoading: boolean;
   isPlaying: boolean;
   data: any;
+  maxWidth?: number;
 }) => {
   if (isLoading) {
     return <SkeletonSongDisplay />;
@@ -36,7 +39,7 @@ const NowPlayingContent = ({
         albumImageUrl={data.albumImageUrl}
         artists={data.artists}
         size="small"
-        maxWidth={500}
+        maxWidth={maxWidth}
       />
     </div>
   );
@@ -44,6 +47,37 @@ const NowPlayingContent = ({
 
 export default function NowPlaying() {
   const { data, isLoading } = useNowPlaying();
+
+  // State to store the dynamic maxWidth value
+  const [maxWidth, setMaxWidth] = useState(400);
+  useEffect(() => {
+    // Function to update maxWidth based on screen size
+    const handleResize = () => {
+      const screenWidth = window.innerWidth;
+      if (screenWidth >= 1400) {
+        setMaxWidth(screenWidth * 0.5);
+      } else if (screenWidth >= 1280) {
+        setMaxWidth(screenWidth * 0.39);
+      } else if (screenWidth >= 1024) {
+        setMaxWidth(screenWidth * 0.35);
+      } else if (screenWidth >= 1024) {
+        setMaxWidth(screenWidth * 0.37);
+      } else if (screenWidth >= 640) {
+        setMaxWidth(screenWidth * 0.345);
+      } else {
+        // mobile
+        setMaxWidth(screenWidth * 0.65);
+      }
+    };
+    // Initial call to set maxWidth
+    handleResize();
+    // Add resize event listener
+    window.addEventListener("resize", handleResize);
+    // Cleanup event listener on unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   return (
     <div
@@ -55,6 +89,7 @@ export default function NowPlaying() {
         isLoading={isLoading}
         isPlaying={!!data?.isPlaying}
         data={data}
+        maxWidth={maxWidth}
       />
     </div>
   );
