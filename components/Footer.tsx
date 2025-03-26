@@ -3,6 +3,7 @@
 import React, { useCallback, useMemo, useState } from "react";
 import SpotifyNowPlaying from "./spotify/NowPlaying";
 import { motion, useScroll, useMotionValueEvent } from "motion/react";
+import { ChevronDown } from "lucide-react";
 
 export default function Footer() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -42,11 +43,20 @@ export default function Footer() {
 
   return (
     <div className="relative flex justify-center">
+      <div
+        className={`fixed bottom-[80px] flex justify-center w-full transition-opacity duration-300 ${
+          isScrolled ? "opacity-0" : "opacity-100"
+        }`}
+      >
+        <ChevronDown
+          className="flex items-center text-muted animate-bounce"
+          size={24}
+        />
+      </div>
       <motion.footer
         className="fixed bottom-3 z-50 backdrop-blur-lg"
         initial={false}
         animate={{
-          // width: isScrolled && !isBottom ? "100%" : "100%",
           boxShadow:
             isScrolled && !isBottom
               ? "0px 2px 12px var(--shadow)"

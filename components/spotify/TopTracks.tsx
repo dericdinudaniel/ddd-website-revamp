@@ -18,9 +18,9 @@ export default function TopTracks() {
       if (screenWidth >= 1400) {
         setMaxWidth(screenWidth * 0.45);
       } else if (screenWidth >= 1280) {
-        setMaxWidth(screenWidth * 0.39);
+        setMaxWidth(screenWidth * 0.45);
       } else if (screenWidth >= 1024) {
-        setMaxWidth(screenWidth * 0.35);
+        setMaxWidth(screenWidth * 0.4);
       } else if (screenWidth >= 1024) {
         setMaxWidth(screenWidth * 0.37);
       } else if (screenWidth >= 640) {
@@ -53,17 +53,22 @@ export default function TopTracks() {
   }
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-      {data.map((track: any) => (
-        <SongDisplay
-          key={track.songUrl}
-          title={track.title}
-          songUrl={track.songUrl}
-          albumImageUrl={track.albumImageUrl}
-          artists={track.artists}
-          maxWidth={maxWidth}
-        />
-      ))}
+    <div className="flex flex-col items-center space-y-3">
+      <h2 className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-5xl 2xl:text-6xl font-header w-max">
+        Top Tracks
+      </h2>
+      <div className="grid grid-cols-1 gap-4 w-max">
+        {data.map((track: any) => (
+          <SongDisplay
+            key={track.songUrl}
+            title={track.title}
+            songUrl={track.songUrl}
+            albumImageUrl={track.albumImageUrl}
+            artists={track.artists}
+            maxWidth={maxWidth}
+          />
+        ))}
+      </div>
     </div>
   );
 }

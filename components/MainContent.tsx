@@ -1,7 +1,8 @@
 import React from "react";
-import TopTracks from "./spotify/TopTracks";
-import TopArtists from "./spotify/TopArtists";
-// import Experience from "./Experience";
+import TopTracks from "@/components/spotify/TopTracks";
+import TopArtists from "@/components/spotify/TopArtists";
+import Experience from "@/components/Experience";
+import AboutMe from "@/components/AboutMe";
 
 export default function MainContent() {
   return (
@@ -14,10 +15,19 @@ export default function MainContent() {
           Software Engineer. Music Producer.
         </p>
       </div>
-      <div className="flex flex-col px-4 gap-y-20 items-center">
-        {/* <Experience /> */}
-        <TopTracks />
-        <TopArtists />
+      <div className="flex flex-col items-center gap-y-6 w-full">
+        <div className="flex flex-col items-center lg:flex-row lg:items-start gap-y-3">
+          <Experience />
+          <AboutMe />
+        </div>
+        <div className="flex flex-col sm:flex-row sm:justify-center sm:gap-x-6 w-[100%] gap-y-6 px-10">
+          <div className="w-full sm:w-1/2 max-w-[600px] flex justify-center">
+            <TopTracks />
+          </div>
+          <div className="w-full sm:w-1/2 max-w-[600px] flex justify-center">
+            <TopArtists />
+          </div>
+        </div>
       </div>
       <div className="h-24" />
     </main>

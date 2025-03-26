@@ -27,7 +27,7 @@ export default function TopArtists() {
         setMaxWidth(screenWidth * 0.345);
       } else {
         // mobile
-        setMaxWidth(screenWidth * 0.25);
+        setMaxWidth(screenWidth * 0.45);
       }
     };
     // Initial call to set maxWidth
@@ -53,16 +53,21 @@ export default function TopArtists() {
   }
 
   return (
-    <div className="grid grid-cols-2 gap-4">
-      {data.map((artist: any) => (
-        <ArtistDisplay
-          key={artist.name}
-          name={artist.name}
-          url={artist.artistUrl}
-          imageUrl={artist.imageUrl}
-          maxWidth={maxWidth}
-        />
-      ))}
+    <div className="flex flex-col items-center space-y-3">
+      <h2 className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-5xl 2xl:text-6xl font-header w-max">
+        Top Artists
+      </h2>
+      <div className="grid grid-cols-1 gap-4">
+        {data.map((artist: any) => (
+          <ArtistDisplay
+            key={artist.name}
+            name={artist.name}
+            url={artist.artistUrl}
+            imageUrl={artist.imageUrl}
+            maxWidth={maxWidth}
+          />
+        ))}
+      </div>
     </div>
   );
 }

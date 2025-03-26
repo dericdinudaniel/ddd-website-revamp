@@ -58,7 +58,7 @@ export default function SongDisplay({
           </a>
         </ScrollingText>
         <div
-          className="text-sm text-gray-500 text-left overflow-hidden whitespace-nowrap relative"
+          className="text-sm text-muted text-left overflow-hidden whitespace-nowrap relative"
           style={{ maxWidth }}
         >
           <ScrollingText
