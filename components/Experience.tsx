@@ -124,11 +124,11 @@ const companies: Company[] = [
 
 const Experience = () => {
   return (
-    <div className="w-full flex flex-col items-center">
+    <div className="w-full min-w-1/2 flex flex-col items-center">
       <h2 className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-5xl 2xl:text-6xl font-header">
         Experience
       </h2>
-      <div className="max-w-4xl mx-auto px-1.5 md:px-10 mt-[-4] sm:mt-[-12] lg:mt-0">
+      <div className="max-w-4xl mx-auto px-1.5 md:px-8 mt-[-8] md:mt-[2] xl:mt-0">
         {companies.map((company) => (
           <div key={company.name} className="flex items-center gap-x-3">
             <div className="flex-shrink-0 size-12 sm:size-16 md:size-20 flex items-center justify-center">

@@ -44,7 +44,7 @@ export default function Footer() {
   return (
     <div className="relative flex justify-center">
       <div
-        className={`fixed bottom-[80px] flex justify-center w-full transition-opacity duration-300 ${
+        className={`fixed bottom-[70px] flex justify-center w-full transition-opacity duration-300 ${
           isScrolled ? "opacity-0" : "opacity-100"
         }`}
       >
