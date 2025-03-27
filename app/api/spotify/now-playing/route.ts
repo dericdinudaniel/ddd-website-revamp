@@ -23,7 +23,7 @@ export async function GET() {
     title: song.item?.name,
     songUrl: song.item?.external_urls?.spotify,
     album: song.item?.album?.name,
-    albumImageUrl: song.item?.album?.images?.[0]?.url,
+    albumImageUrl: song.item?.album?.images?.[1]?.url,
     artists: song.item?.artists?.map((artist: any) => ({
       name: artist.name,
       url: artist.external_urls.spotify,

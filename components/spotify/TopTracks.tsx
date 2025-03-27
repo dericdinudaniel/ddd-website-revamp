@@ -57,7 +57,7 @@ export default function TopTracks() {
       <h2 className="text-4xl sm:text-5xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-6xl font-header">
         Top Tracks
       </h2>
-      <div className="grid grid-cols-1 gap-4 w-max">
+      <div className="mt-3 grid grid-cols-1 gap-2 w-max">
         {data.map((track: any) => (
           <SongDisplay
             key={track.songUrl}

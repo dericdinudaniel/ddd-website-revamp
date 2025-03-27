@@ -8,7 +8,7 @@ export async function GET() {
 
   const formattedArtists = artists.items.map((artist: any) => ({
     name: artist.name,
-    imageUrl: artist.images[0]?.url,
+    imageUrl: artist.images[1]?.url,
     artistUrl: artist.external_urls.spotify,
   }));
 

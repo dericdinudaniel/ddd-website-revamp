@@ -7,7 +7,7 @@ const AboutMe = () => {
         About Me
       </h2>
 
-      <div className="w-95 sm:w-120 md:w-70 lg:w-100 2xl:lg:w-120 text-sm sm:text-base md:text-base lg:text-xl">
+      <div className="mt-2 w-95 sm:w-120 md:w-70 lg:w-100 2xl:lg:w-120 text-sm sm:text-base md:text-base lg:text-xl">
         <p>
           I&apos;m a software engineer & music producer based in Ann Arbor, MI.
         </p>

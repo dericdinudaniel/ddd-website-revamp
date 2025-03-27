@@ -26,9 +26,9 @@ const Section1 = ({ className = "" }: SectionProps) => {
 const Section2 = ({ className = "" }: SectionProps) => {
   return (
     <section
-      className={`${className} min-h-screen flex flex-col justify-center items-center sticky top-0 bg-background border-t border-border`}
+      className={`${className} min-h-screen flex flex-col justify-center items-center sticky top-0 bg-background border-t`}
     >
-      <div className="flex flex-col w-full md:flex-row justify-center gap-x-10 gap-y-6">
+      <div className="flex flex-col w-full md:flex-row justify-center gap-x-10 gap-y-16 px-2">
         <Experience />
         <AboutMe />
       </div>
@@ -39,18 +39,16 @@ const Section2 = ({ className = "" }: SectionProps) => {
 const Section3 = ({ className = "" }: SectionProps) => {
   return (
     <section
-      className={`${className} min-h-screen flex flex-col justify-center items-center sticky top-0 bg-background border-t border-border`}
+      className={`${className} min-h-screen max-w-screen flex flex-col justify-center sticky top-0 bg-background border-t-0 sm:border-t`}
     >
-      <div className="flex flex-col sm:flex-row sm:justify-center sm:gap-x-6 w-[100%] gap-y-6 px-10">
-        <div className="w-full sm:w-1/2 max-w-[600px] flex justify-center">
+      <div className="flex flex-col sm:flex-row justify-center sm:gap-x-6 w-[100%] gap-y-6 px-0 sm:px-10">
+        <div className="min-h-screen sm:min-h-fit w-full sm:max-w-[600px] sm:w-1/2 flex flex-col justify-center bg-background sticky top-0 border-t sm:border-t-0">
           <TopTracks />
         </div>
-        <div className="w-full sm:w-1/2 max-w-[600px] flex justify-center">
+        <div className="min-h-screen sm:min-h-fit w-full sm:max-w-[600px] sm:w-1/2 flex flex-col justify-center bg-background sticky top-0 border-t sm:border-t-0">
           <TopArtists />
         </div>
       </div>
-      {/* create space for footer at the bottom for sm and smaller */}
-      <div className="h-20 sm:hidden"></div>
     </section>
   );
 };

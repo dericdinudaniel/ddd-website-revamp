@@ -9,7 +9,7 @@ export async function GET() {
   const formattedTracks = tracks.items.map((track: any) => ({
     title: track.name,
     songUrl: track.external_urls.spotify,
-    albumImageUrl: track.album.images[0].url,
+    albumImageUrl: track.album.images[1].url,
     artists: track.artists.map((artist: any) => ({
       name: artist.name,
       url: artist.external_urls.spotify,

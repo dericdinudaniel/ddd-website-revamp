@@ -16,7 +16,7 @@ const companies: Company[] = [
     site: "https://www.apple.com",
     logo: () => {
       return (
-        <div className="size-6 sm:size-8 md:size-12 flex items-center justify-center">
+        <div className="size-6 sm:size-8 md:size-10 flex items-center justify-center">
           <a href={"https://www.apple.com"} target="_blank">
             <Image
               src="/company-logos/apple-logo.svg"
@@ -128,10 +128,10 @@ const Experience = () => {
       <h2 className="text-4xl sm:text-5xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-6xl font-header">
         Experience
       </h2>
-      <div className="max-w-4xl mx-auto px-1.5">
+      <div className="mt-2 md:mt-1">
         {companies.map((company) => (
           <div key={company.name} className="flex items-center gap-x-2">
-            <div className="flex-shrink-0 size-12 sm:size-14 md:size-20 flex items-center justify-center">
+            <div className="flex-shrink-0 size-12 sm:size-14 md:size-18 flex items-center justify-center">
               {company.logo()}
             </div>
             <div>
