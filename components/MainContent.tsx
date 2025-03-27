@@ -10,7 +10,7 @@ const Page1 = () => {
       <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl 2xl:text-9xl font-bold font-header tracking-[.1rem]">
         Deric Dinu Daniel
       </h1>
-      <p className="text-xs sm:text-base md:text-lg lg:text-xl xl:text-2xl">
+      <p className="text-xs sm:text-base md:text-lg lg:text-xl xl:text-2xl mt-1">
         Software Engineer. Music Producer.
       </p>
     </div>

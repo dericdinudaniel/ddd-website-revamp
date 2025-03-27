@@ -54,7 +54,7 @@ export default function RootLayout({
           src="//unpkg.com/react-scan/dist/auto.global.js"
         />
       </head> */}
-      <body className={`${fontVariables} antialiased`}>
+      <body className={`${fontVariables} antialiased bg-background`}>
         <ThemeProvider enableSystem={true} disableTransitionOnChange={true}>
           <Header />
           {children}
