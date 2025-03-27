@@ -19,8 +19,8 @@ const Page1 = () => {
 
 const Page2 = () => {
   return (
-    <div className="min-h-screen w-screen flex items-center justify-center overflow-hidden">
-      <div className="flex flex-col items-center w-fit justify-center lg:flex-row gap-y-3">
+    <div className="min-h-screen w-screen flex items-center justify-center px-5 border border-border">
+      <div className="flex flex-col w-full md:flex-row justify-center gap-x-10 gap-y-6">
         <Experience />
         <AboutMe />
       </div>

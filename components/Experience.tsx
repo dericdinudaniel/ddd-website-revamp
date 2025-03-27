@@ -12,7 +12,7 @@ const companyImageClasses = "";
 
 const companies: Company[] = [
   {
-    name: "Apple - Silicon Engineering Group",
+    name: "Apple – Silicon Engineering Group",
     site: "https://www.apple.com",
     logo: () => {
       return (
@@ -32,7 +32,7 @@ const companies: Company[] = [
     position: "Incoming SoC Embedded Software Engineer",
   },
   {
-    name: "Microsoft - Data Security and Privacy",
+    name: "Microsoft – Data Security & Privacy",
     site: "https://www.microsoft.com",
     logo: () => {
       return (
@@ -52,7 +52,7 @@ const companies: Company[] = [
     position: "Software Engineering Intern",
   },
   {
-    name: "Bose - Research",
+    name: "Bose – Research",
     site: "https://www.bose.com",
     logo: () => {
       return (
@@ -101,7 +101,7 @@ const companies: Company[] = [
     position: "Audio/Music Production Consultant",
   },
   {
-    name: "Siemens - Digital Industries Software",
+    name: "Siemens – Digital Industries SW",
     site: "https://www.sw.siemens.com/en-US/",
     logo: () => {
       return (
@@ -124,25 +124,25 @@ const companies: Company[] = [
 
 const Experience = () => {
   return (
-    <div className="w-full min-w-1/2 flex flex-col items-center">
-      <h2 className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-5xl 2xl:text-6xl font-header">
+    <div className="flex flex-col items-center">
+      <h2 className="text-4xl sm:text-5xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-6xl font-header">
         Experience
       </h2>
-      <div className="max-w-4xl mx-auto px-1.5 md:px-8 mt-[-8] md:mt-[2] xl:mt-0">
+      <div className="max-w-4xl mx-auto px-1.5">
         {companies.map((company) => (
-          <div key={company.name} className="flex items-center gap-x-3">
-            <div className="flex-shrink-0 size-12 sm:size-16 md:size-20 flex items-center justify-center">
+          <div key={company.name} className="flex items-center gap-x-2">
+            <div className="flex-shrink-0 size-12 sm:size-14 md:size-20 flex items-center justify-center">
               {company.logo()}
             </div>
             <div>
               <a
-                className="font-bold underline-fade text-base md:text-xl break-words hover:underline"
+                className="font-semibold underline-fade text-base sm:text-xl md:text-xl xl:text-2xl break-words hover:underline"
                 href={company.site}
                 target="_blank"
               >
                 {company.name}
               </a>
-              <h3 className="text-xs md:text-sm xl:text-base text-muted">
+              <h3 className="text-xs sm:text-base md:text-sm xl:text-base text-muted">
                 {company.position}
               </h3>
             </div>

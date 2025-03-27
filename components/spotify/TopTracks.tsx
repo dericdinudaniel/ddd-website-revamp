@@ -54,7 +54,7 @@ export default function TopTracks() {
 
   return (
     <div className="flex flex-col items-center space-y-3">
-      <h2 className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-5xl 2xl:text-6xl font-header w-max">
+      <h2 className="text-4xl sm:text-5xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-6xl font-header">
         Top Tracks
       </h2>
       <div className="grid grid-cols-1 gap-4 w-max">

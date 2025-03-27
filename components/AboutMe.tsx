@@ -2,12 +2,12 @@ import React from "react";
 
 const AboutMe = () => {
   return (
-    <div className="flex flex-col items-center w-1/2">
-      <h2 className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-5xl 2xl:text-6xl font-header w-max">
+    <div className="flex flex-col items-center">
+      <h2 className="text-4xl sm:text-5xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-6xl font-header">
         About Me
       </h2>
 
-      <div className="w-104 md:w-115 text-sm md:text-lg text-center mt-0 lg:mt-3">
+      <div className="w-95 sm:w-120 md:w-70 lg:w-100 2xl:lg:w-120 text-sm sm:text-base md:text-base lg:text-xl">
         <p>
           I&apos;m a software engineer & music producer based in Ann Arbor, MI.
         </p>
