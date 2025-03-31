@@ -1,124 +1,89 @@
-import React, { JSX } from "react";
+/* eslint-disable react-hooks/rules-of-hooks */
+"use client";
+
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
+import { useTheme } from "next-themes";
 
-interface Company {
-  name: string;
-  site: string;
-  logo: () => JSX.Element;
-  position: string;
-}
+// Hook to determine dark mode
+const useIsDarkTheme = () => {
+  const { theme, resolvedTheme } = useTheme();
+  const [isDark, setIsDark] = useState(false);
 
-const companyImageClasses = "";
+  useEffect(() => {
+    setIsDark(
+      Boolean(theme?.includes("dark") || resolvedTheme?.includes("dark"))
+    );
+  }, [theme, resolvedTheme]);
 
-const companies: Company[] = [
+  return isDark;
+};
+
+const CompanyLogo = ({
+  url,
+  logoPath,
+  size,
+  invertOnDark = false,
+}: {
+  url: string;
+  logoPath: string;
+  size: string;
+  invertOnDark?: boolean;
+}) => {
+  const isDark = invertOnDark && useIsDarkTheme();
+  return (
+    <div className={`${size} flex items-center justify-center`}>
+      <a href={url} target="_blank">
+        <Image
+          src={logoPath}
+          alt="Company Logo"
+          height={80}
+          width={80}
+          className={isDark ? "invert" : ""}
+        />
+      </a>
+    </div>
+  );
+};
+
+// Company Data
+const companies = [
   {
     name: "Apple – Silicon Engineering Group",
     site: "https://www.apple.com",
-    logo: () => {
-      return (
-        <div className="size-6 sm:size-8 md:size-10 flex items-center justify-center">
-          <a href={"https://www.apple.com"} target="_blank">
-            <Image
-              src="/company-logos/apple-logo.svg"
-              alt="Apple"
-              height={80}
-              width={80}
-              className={companyImageClasses + "dark:invert"}
-            />
-          </a>
-        </div>
-      );
-    },
+    logoPath: "/company-logos/apple-logo.svg",
     position: "Incoming SoC Embedded Software Engineer",
+    size: "size-6 sm:size-8 md:size-10",
+    invertOnDark: true,
   },
   {
     name: "Microsoft – Data Security & Privacy",
     site: "https://www.microsoft.com",
-    logo: () => {
-      return (
-        <div className="size-6 sm:size-8 md:size-12 flex items-center justify-center">
-          <a href={"https://www.microsoft.com"} target="_blank">
-            <Image
-              src="/company-logos/microsoft-logo.svg"
-              alt="Microsoft"
-              height={80}
-              width={80}
-              className={companyImageClasses}
-            />
-          </a>
-        </div>
-      );
-    },
+    logoPath: "/company-logos/microsoft-logo.svg",
     position: "Software Engineering Intern",
+    size: "size-6 sm:size-8 md:size-12",
   },
   {
     name: "Bose – Research",
     site: "https://www.bose.com",
-    logo: () => {
-      return (
-        <div className="size-14 sm:size-18 md:size-24 flex items-center justify-center">
-          <a href={"https://www.bose.com"} target="_blank">
-            <Image
-              src="/company-logos/bose-logo.svg"
-              alt="Bose Logo"
-              height={80}
-              width={80}
-              className={companyImageClasses + "dark:hidden"}
-            />
-            <Image
-              src="/company-logos/bose-logo.svg"
-              alt="Bose Logo"
-              height={80}
-              width={80}
-              className={
-                companyImageClasses + "hidden dark:block filter invert"
-              }
-            />
-          </a>
-        </div>
-      );
-    },
+    logoPath: "/company-logos/bose-logo.svg",
     position: "Systems Software Engineering Intern",
+    size: "size-14 sm:size-18 md:size-24",
+    invertOnDark: true,
   },
   {
     name: "Shade",
     site: "https://www.shade.inc",
-    logo: () => {
-      return (
-        <div className="size-12 sm:size-16 md:size-20 flex items-center justify-center">
-          <a href={"https://www.shade.inc"} target="_blank">
-            <Image
-              src="/company-logos/shade-logo.svg"
-              alt="Shade Logo"
-              height={80}
-              width={80}
-              className={companyImageClasses}
-            />
-          </a>
-        </div>
-      );
-    },
+    logoPath: "/company-logos/shade-logo.svg",
     position: "Audio/Music Production Consultant",
+    size: "size-12 sm:size-16 md:size-20",
   },
   {
     name: "Siemens – Digital Industries SW",
     site: "https://www.sw.siemens.com/en-US/",
-    logo: () => {
-      return (
-        <div className="size-12 sm:size-16 md:size-20 flex items-center justify-center">
-          <a href={"https://www.sw.siemens.com/en-US/"} target="_blank">
-            <Image
-              src="/company-logos/siemens-logo.svg"
-              alt="Siemens Logo"
-              height={80}
-              width={80}
-              className={companyImageClasses}
-            />
-          </a>
-        </div>
-      );
-    },
+    logoPath: "/company-logos/siemens-logo.svg",
     position: "Software Engineering Intern",
+    size: "size-12 sm:size-16 md:size-20",
   },
 ];
 
@@ -131,8 +96,15 @@ const Experience = () => {
       <div className="mt-2 md:mt-1">
         {companies.map((company) => (
           <div key={company.name} className="flex items-center gap-x-2">
-            <div className="flex-shrink-0 size-12 sm:size-14 md:size-18 flex items-center justify-center">
-              {company.logo()}
+            <div
+              className={`flex-shrink-0 size-12 sm:size-14 md:size-18 flex items-center justify-center`}
+            >
+              <CompanyLogo
+                url={company.site}
+                logoPath={company.logoPath}
+                size={company.size}
+                invertOnDark={company.invertOnDark}
+              />
             </div>
             <div>
               <a

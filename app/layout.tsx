@@ -1,23 +1,10 @@
 import type { Metadata } from "next";
 import { ThemeProvider } from "next-themes";
-import {
-  Geist,
-  Geist_Mono,
-  JetBrains_Mono,
-  Instrument_Serif,
-} from "next/font/google";
+import { JetBrains_Mono, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains-mono",
   subsets: ["latin"],
@@ -28,12 +15,7 @@ const instrumentSerif = Instrument_Serif({
   weight: "400",
 });
 
-const fonts = [
-  geistSans.variable,
-  geistMono.variable,
-  jetbrainsMono.variable,
-  instrumentSerif.variable,
-];
+const fonts = [jetbrainsMono.variable, instrumentSerif.variable];
 const fontVariables = fonts.join(" ");
 
 export const metadata: Metadata = {
