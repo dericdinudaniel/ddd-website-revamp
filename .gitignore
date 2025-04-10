@@ -10,6 +10,16 @@
 !.yarn/releases
 !.yarn/versions
 
+# any folder anywhere called node_modules
+**/.DS_Store
+**/node_modules
+**/dist/
+**/.next/
+**/.yalc/
+**/yalc.lock
+**/.idea/
+**/.turbo
+
 # testing
 /coverage
 

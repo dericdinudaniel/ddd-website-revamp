@@ -1,7 +1,7 @@
 // components/ThemeSwitcher.tsx
 
 import { useState, useEffect } from "react";
-import { useTheme } from "next-themes";
+import { useTheme } from "ddd-themes";
 import { Sun, Moon, Monitor, Loader } from "lucide-react";
 import { motion } from "motion/react";
 
