@@ -3,6 +3,7 @@ import TopTracks from "@/components/spotify/TopTracks";
 import TopArtists from "@/components/spotify/TopArtists";
 import Experience from "@/components/Experience";
 import AboutMe from "@/components/AboutMe";
+import SocialLinks from "./SocialLinks";
 
 type SectionProps = {
   className?: string;
@@ -16,9 +17,10 @@ const Section1 = ({ className = "" }: SectionProps) => {
       <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl 2xl:text-9xl font-bold font-header tracking-[.1rem]">
         Deric Dinu Daniel
       </h1>
-      <p className="text-xs sm:text-base md:text-lg lg:text-xl xl:text-2xl mt-1">
+      <p className="text-xs sm:text-base md:text-lg lg:text-xl xl:text-2xl">
         Software Engineer. Music Producer.
       </p>
+      <SocialLinks />
     </section>
   );
 };
