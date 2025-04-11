@@ -95,12 +95,8 @@ const Experience = () => {
         Experience
       </h2>
       <div className="mt-2 md:mt-1">
-        {companies.map((company, index) => (
-          <SlideFadeIn
-            className="flex items-center gap-x-2"
-            index={index}
-            key={company.name}
-          >
+        {companies.map((company) => (
+          <SlideFadeIn className="flex items-center gap-x-2" key={company.name}>
             <div
               className={`flex-shrink-0 size-12 sm:size-14 md:size-18 flex items-center justify-center`}
             >

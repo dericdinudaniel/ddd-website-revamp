@@ -44,8 +44,8 @@ export default function TopArtists() {
         Top Artists
       </h2>
       <div className="mt-3 grid grid-cols-1 gap-2">
-        {data.map((artist: any, index: number) => (
-          <SlideFadeIn key={artist.name} index={index} direction={direction}>
+        {data.map((artist: any) => (
+          <SlideFadeIn key={artist.name} direction={direction}>
             <MemoizedArtistDisplay
               name={artist.name}
               url={artist.artistUrl}

@@ -8,7 +8,6 @@ type SlideDirection = "left" | "right";
 
 export function SlideFadeIn({
   className = "",
-  index = 0,
   children,
   duration = 0.5,
   delay = 0,
@@ -19,7 +18,6 @@ export function SlideFadeIn({
 }: {
   children: ReactNode;
   className?: string;
-  index?: number;
   duration?: number;
   delay?: number;
   inMargin?: string;

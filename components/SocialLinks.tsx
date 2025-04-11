@@ -31,7 +31,6 @@ const SocialLinks = () => {
       {socials.map(({ name, icon: Icon, link }, index) => (
         <SlideFadeIn
           key={name}
-          index={index}
           slideOffset={20}
           delay={(socials.length - index) * 0.06}
         >

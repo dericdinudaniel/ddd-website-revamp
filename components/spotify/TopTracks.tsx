@@ -32,8 +32,8 @@ export default function TopTracks() {
         Top Tracks
       </h2>
       <div className="mt-3 grid grid-cols-1 gap-2 w-max">
-        {data.map((track: any, index: number) => (
-          <SlideFadeIn key={track.songUrl} index={index}>
+        {data.map((track: any) => (
+          <SlideFadeIn key={track.songUrl}>
             <MemoizedSongDisplay
               title={track.title}
               songUrl={track.songUrl}
