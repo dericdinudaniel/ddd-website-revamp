@@ -4,6 +4,7 @@ import React, { useCallback, useMemo, useState } from "react";
 import { Terminal } from "lucide-react";
 import { motion, useScroll, useMotionValueEvent } from "motion/react";
 import ThemeSwitcher from "./ThemeSwitcher";
+import NameVersionSelector from "./NameVersionSelector";
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -82,7 +83,8 @@ export default function Header() {
         {/* Content */}
         <div className="relative z-10 flex justify-between items-center">
           <div className="flex items-center gap-x-1">
-            <motion.div
+            <motion.a
+              href="/"
               initial={false}
               animate={{
                 width: isScrolled ? 35 : 45,
@@ -94,7 +96,7 @@ export default function Header() {
               }}
             >
               <Terminal className="w-full h-full" />
-            </motion.div>
+            </motion.a>
             <motion.h1
               className="font-bold"
               initial={false}
@@ -109,7 +111,7 @@ export default function Header() {
                 lineHeight: 1.2,
               }}
             >
-              DDD
+              <NameVersionSelector currentVersion="current" />
             </motion.h1>
           </div>
 

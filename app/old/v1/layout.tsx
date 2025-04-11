@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import { ThemeProvider } from "next-themes";
 import { JetBrains_Mono, Instrument_Serif } from "next/font/google";
-import "./globals.css";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import "@/app/globals.css";
+import "@/app/old/v1/old.css";
+
+import NavBar from "@/components/old/v1/NavBar";
+import Footer from "@/components/old/v1/Footer";
 
 const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains-mono",
@@ -29,20 +31,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="no-scrollbar" suppressHydrationWarning>
-      {/* <head>
-        <script
-          crossOrigin="anonymous"
-          src="//unpkg.com/react-scan/dist/auto.global.js"
-        />
-      </head> */}
-      <body className={`${fontVariables} antialiased bg-background`}>
-        <ThemeProvider enableSystem={true} disableTransitionOnChange={true}>
-          {/* <Header /> */}
-          {children}
-          {/* <Footer /> */}
-        </ThemeProvider>
-      </body>
-    </html>
+    <div
+      className={`${fontVariables} antialiased bg-slate-100 dark:bg-slate-900`}
+    >
+      <div
+        className={`mx-auto flex h-screen flex-col font-jetbrains-mono md:px-8 px-2 md:py-6 py-4`}
+      >
+        <NavBar />
+        <main>{children}</main>
+        <div className="grow" />
+        <Footer />
+      </div>
+    </div>
   );
 }
