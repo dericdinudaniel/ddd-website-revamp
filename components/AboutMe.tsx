@@ -4,7 +4,7 @@ import { SlideFadeIn } from "./SlideFadeIn";
 import React, { useEffect, useState } from "react";
 
 const AboutMe = () => {
-  const [direction, setDirection] = useState<"left" | "right">("right");
+  const [direction, setDirection] = useState<"left" | "right">("left");
 
   useEffect(() => {
     const updateDirection = () => {
