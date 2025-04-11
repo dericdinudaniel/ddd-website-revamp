@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { ThemeProvider } from "next-themes";
 import { JetBrains_Mono, Instrument_Serif } from "next/font/google";
 import "@/app/globals.css";
 import "@/app/old/v1/old.css";

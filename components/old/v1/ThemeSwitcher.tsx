@@ -1,7 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 "use client";
 
 import { useTheme } from "next-themes";
-import { useState, useEffect, useMemo, Fragment, JSX } from "react";
+import { useState, useEffect, useMemo, JSX } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { ChevronsUpDown } from "lucide-react";
 
@@ -21,7 +23,7 @@ interface ThemeSwitcherProps {
   className?: string;
 }
 
-function SunIcon({ selected, size, ...props }: IconProps) {
+function SunIcon({ selected, size }: IconProps) {
   return (
     <svg
       fill="none"
@@ -98,11 +100,8 @@ function PcIcon({ selected, size, ...props }: IconProps) {
   );
 }
 
-const themeList = [{ name: "Light" }, { name: "Dark" }, { name: "System" }];
-
 const ThemeSwitcher = ({ className }: ThemeSwitcherProps) => {
-  const { theme, systemTheme, setTheme } = useTheme();
-  const currentTheme = theme === "system" ? systemTheme : theme;
+  const { theme, setTheme } = useTheme();
 
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
@@ -158,12 +157,10 @@ const ThemeSwitcher = ({ className }: ThemeSwitcherProps) => {
 
   if (!mounted) return null;
 
-  const test = true;
-
   return (
     <div className={"z-10 " + className}>
       <Listbox value={selectedOption} onChange={setSelectedOption}>
-        {({ open }) => (
+        {() => (
           <div className="relative mt-0">
             <Listbox.Button className="relative rounded-lg bg-white dark:bg-slate-800 py-2 px-2 shadow-md hover:bg-slate-50 hover:dark:bg-slate-700 hover:dark:bg-opacity-80 active:bg-slate-100 active:dark:bg-opacity-60 focus:outline-none focus-visible:border-slate-300 focus-visible:ring-2 focus-visible:ring-slate-300 focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-500 sm:text-sm">
               <div className="flex">

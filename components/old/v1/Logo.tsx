@@ -1,13 +1,11 @@
 import React from "react";
-import Link from "next/link";
 import NameVersionSelector from "@/components/NameVersionSelector";
 
 interface LogoProps {
   className?: string;
-  currentTheme?: string;
 }
 
-const Logo = ({ currentTheme, className }: LogoProps) => {
+const Logo = ({ className }: LogoProps) => {
   return (
     <div>
       <div className={className}>

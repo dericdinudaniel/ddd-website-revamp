@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import Link from "next/link";
 import React from "react";
 
@@ -11,7 +13,7 @@ interface IconProps {
   [key: string]: any; // Allows other props to be passed to the SVG element
 }
 
-function GitHubIcon({ ...props }: IconProps) {
+function GitHubIcon({}: IconProps) {
   return (
     <Link href="https://github.com/dericdinudaniel" target="_blank">
       <svg
@@ -28,7 +30,7 @@ function GitHubIcon({ ...props }: IconProps) {
   );
 }
 
-function EmailIcon({ ...props }: IconProps) {
+function EmailIcon({}: IconProps) {
   return (
     <Link href="mailto:dericdd@umich.edu" target="_blank">
       <svg
@@ -48,7 +50,7 @@ function EmailIcon({ ...props }: IconProps) {
   );
 }
 
-function LinkedInIcon({ ...props }: IconProps) {
+function LinkedInIcon() {
   return (
     <Link href="https://www.linkedin.com/in/dericdinudaniel/" target="_blank">
       <svg
@@ -61,7 +63,7 @@ function LinkedInIcon({ ...props }: IconProps) {
   );
 }
 
-const ResumeLink = ({ className }: SocialLinksProps) => {
+const ResumeLink = () => {
   return (
     <Link
       href="/Deric_Dinu_Daniel_Resume.pdf"
