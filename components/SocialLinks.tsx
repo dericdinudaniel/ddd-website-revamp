@@ -1,5 +1,6 @@
 import { FileUser, Github, Linkedin, Mail } from "lucide-react";
 import React from "react";
+import { SlideFadeIn } from "./SlideFadeIn";
 
 const socials = [
   {
@@ -27,16 +28,23 @@ const socials = [
 const SocialLinks = () => {
   return (
     <div className="mt-2 lg:mt-3 xl:mt-4 flex gap-x-8">
-      {socials.map(({ name, icon: Icon, link }) => (
-        <a
+      {socials.map(({ name, icon: Icon, link }, index) => (
+        <SlideFadeIn
           key={name}
-          href={link}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label={name}
+          index={socials.length - index}
+          delay={0.1}
+          slideOffset={20}
         >
-          <Icon className="size-5 md:size-6 xl:size-8" />
-        </a>
+          <a
+            key={name}
+            href={link}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={name}
+          >
+            <Icon className="size-5 md:size-6 xl:size-8" />
+          </a>
+        </SlideFadeIn>
       ))}
     </div>
   );

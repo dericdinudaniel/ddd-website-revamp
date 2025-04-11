@@ -37,6 +37,7 @@ export default function TopArtists() {
             key={artist.name}
             index={index}
             direction={window.innerWidth >= 640 ? "right" : "left"}
+            delay={0.03}
           >
             <MemoizedArtistDisplay
               name={artist.name}

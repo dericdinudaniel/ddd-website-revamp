@@ -4,6 +4,7 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { useTheme } from "next-themes";
+import { SlideFadeIn } from "./SlideFadeIn";
 
 // Hook to determine dark mode
 const useIsDarkTheme = () => {
@@ -94,8 +95,12 @@ const Experience = () => {
         Experience
       </h2>
       <div className="mt-2 md:mt-1">
-        {companies.map((company) => (
-          <div key={company.name} className="flex items-center gap-x-2">
+        {companies.map((company, index) => (
+          <SlideFadeIn
+            className="flex items-center gap-x-2"
+            index={index}
+            key={company.name}
+          >
             <div
               className={`flex-shrink-0 size-12 sm:size-14 md:size-18 flex items-center justify-center`}
             >
@@ -118,7 +123,7 @@ const Experience = () => {
                 {company.position}
               </h3>
             </div>
-          </div>
+          </SlideFadeIn>
         ))}
       </div>
     </div>

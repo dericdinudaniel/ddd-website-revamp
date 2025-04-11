@@ -1,3 +1,5 @@
+"use client";
+
 import { useRef, useEffect, ReactNode } from "react";
 import { motion, useAnimation, useInView } from "motion/react";
 
@@ -5,19 +7,25 @@ type MarginValue = `${number}${"px" | "%"}`;
 type SlideDirection = "left" | "right";
 
 export function SlideFadeIn({
-  index,
+  className = "",
+  index = 0,
   children,
   delay = 0.05,
+  duration = 0.5,
   inMargin = "-50px",
-  outMargin = "-80px",
+  outMargin = "-50px",
   direction = "left",
+  slideOffset = 50,
 }: {
   children: ReactNode;
-  index: number;
+  className?: string;
+  index?: number;
   delay?: number;
+  duration?: number;
   inMargin?: string;
   outMargin?: string;
   direction?: SlideDirection;
+  slideOffset?: number;
 }) {
   const ref = useRef(null);
   const isInView = useInView(ref, {
@@ -36,7 +44,7 @@ export function SlideFadeIn({
     }
   }, [isInView, controls]);
 
-  const offsetX = direction === "right" ? 50 : -50;
+  const offsetX = direction === "right" ? slideOffset : -slideOffset;
 
   const animationVariants = {
     hidden: { opacity: 0, x: offsetX, filter: "blur(8px)" },
@@ -45,10 +53,11 @@ export function SlideFadeIn({
 
   return (
     <motion.div
+      className={className}
       ref={ref}
       initial="hidden"
       animate={controls}
-      transition={{ duration: 0.5, delay: index * delay }}
+      transition={{ duration, delay: index * delay }}
       variants={animationVariants}
       style={{ willChange: "transform, opacity, filter" }}
     >
