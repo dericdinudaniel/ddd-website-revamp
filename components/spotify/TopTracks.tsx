@@ -4,51 +4,25 @@
 import { useTopTracks } from "@/lib/hooks/useSpotify";
 import SongDisplay from "@/components/spotify/SongDisplay";
 import { SkeletonSongDisplay } from "./Skeletons";
-import { useState, useEffect } from "react";
+import { memo } from "react";
+import { SlideFadeIn } from "../SlideFadeIn";
+import { useResponsiveMaxWidth } from "@/lib/hooks/useResponsiveWidth";
+
+const breakpoints = [0.5, 0.39, 0.35, 0.345, 0.65];
+const MemoizedSongDisplay = memo(SongDisplay);
 
 export default function TopTracks() {
   const { data, isLoading } = useTopTracks();
 
-  // State to store the dynamic maxWidth value
-  const [maxWidth, setMaxWidth] = useState(400);
-  useEffect(() => {
-    // Function to update maxWidth based on screen size
-    const handleResize = () => {
-      const screenWidth = window.innerWidth;
-      if (screenWidth >= 1400) {
-        setMaxWidth(screenWidth * 0.45);
-      } else if (screenWidth >= 1280) {
-        setMaxWidth(screenWidth * 0.45);
-      } else if (screenWidth >= 1024) {
-        setMaxWidth(screenWidth * 0.4);
-      } else if (screenWidth >= 1024) {
-        setMaxWidth(screenWidth * 0.37);
-      } else if (screenWidth >= 640) {
-        setMaxWidth(screenWidth * 0.345);
-      } else {
-        // mobile
-        setMaxWidth(screenWidth * 0.75);
-      }
-    };
-    // Initial call to set maxWidth
-    handleResize();
-    // Add resize event listener
-    window.addEventListener("resize", handleResize);
-    // Cleanup event listener on unmount
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
+  const maxWidth = useResponsiveMaxWidth(breakpoints);
 
   if (isLoading) {
     return (
-      <>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {Array.from({ length: 10 }).map((_, index) => (
-            <SkeletonSongDisplay key={index} />
-          ))}
-        </div>
-      </>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {Array.from({ length: 10 }).map((_, index) => (
+          <SkeletonSongDisplay key={index} />
+        ))}
+      </div>
     );
   }
 
@@ -58,15 +32,16 @@ export default function TopTracks() {
         Top Tracks
       </h2>
       <div className="mt-3 grid grid-cols-1 gap-2 w-max">
-        {data.map((track: any) => (
-          <SongDisplay
-            key={track.songUrl}
-            title={track.title}
-            songUrl={track.songUrl}
-            albumImageUrl={track.albumImageUrl}
-            artists={track.artists}
-            maxWidth={maxWidth}
-          />
+        {data.map((track: any, index: number) => (
+          <SlideFadeIn key={track.songUrl} index={index}>
+            <MemoizedSongDisplay
+              title={track.title}
+              songUrl={track.songUrl}
+              albumImageUrl={track.albumImageUrl}
+              artists={track.artists}
+              maxWidth={maxWidth}
+            />
+          </SlideFadeIn>
         ))}
       </div>
     </div>
