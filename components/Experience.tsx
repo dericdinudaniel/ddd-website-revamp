@@ -80,7 +80,7 @@ const companies = [
     size: "size-12 sm:size-16 md:size-20",
   },
   {
-    name: "Siemens – Digital Industries SW",
+    name: "Siemens – DISW",
     site: "https://www.sw.siemens.com/en-US/",
     logoPath: "/company-logos/siemens-logo.svg",
     position: "Software Engineering Intern",

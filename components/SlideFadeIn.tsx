@@ -10,17 +10,15 @@ export function SlideFadeIn({
   className = "",
   index = 0,
   children,
-  delay = 0.05,
   duration = 0.5,
   inMargin = "-50px",
-  outMargin = "-50px",
+  outMargin = "-120px",
   direction = "left",
   slideOffset = 50,
 }: {
   children: ReactNode;
   className?: string;
   index?: number;
-  delay?: number;
   duration?: number;
   inMargin?: string;
   outMargin?: string;
@@ -57,7 +55,7 @@ export function SlideFadeIn({
       ref={ref}
       initial="hidden"
       animate={controls}
-      transition={{ duration, delay: index * delay }}
+      transition={{ duration }}
       variants={animationVariants}
       style={{ willChange: "transform, opacity, filter" }}
     >

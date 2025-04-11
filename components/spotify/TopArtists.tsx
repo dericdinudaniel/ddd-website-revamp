@@ -4,7 +4,7 @@
 import { useTopArtists } from "@/lib/hooks/useSpotify";
 import ArtistDisplay from "@/components/spotify/ArtistDisplay";
 import { SkeletonArtistDisplay } from "./Skeletons";
-import { memo } from "react";
+import { memo, useEffect, useState } from "react";
 import { SlideFadeIn } from "../SlideFadeIn";
 import { useResponsiveMaxWidth } from "@/lib/hooks/useResponsiveWidth";
 
@@ -13,6 +13,18 @@ const MemoizedArtistDisplay = memo(ArtistDisplay);
 
 export default function TopArtists() {
   const { data, isLoading } = useTopArtists();
+
+  const [direction, setDirection] = useState<"left" | "right">("right");
+
+  useEffect(() => {
+    const updateDirection = () => {
+      setDirection(window.innerWidth >= 640 ? "right" : "left");
+    };
+
+    updateDirection(); // initial check
+    window.addEventListener("resize", updateDirection);
+    return () => window.removeEventListener("resize", updateDirection);
+  }, []);
 
   const maxWidth = useResponsiveMaxWidth(breakpoints);
 
@@ -33,12 +45,7 @@ export default function TopArtists() {
       </h2>
       <div className="mt-3 grid grid-cols-1 gap-2">
         {data.map((artist: any, index: number) => (
-          <SlideFadeIn
-            key={artist.name}
-            index={index}
-            direction={window.innerWidth >= 640 ? "right" : "left"}
-            delay={0.03}
-          >
+          <SlideFadeIn key={artist.name} index={index} direction={direction}>
             <MemoizedArtistDisplay
               name={artist.name}
               url={artist.artistUrl}

@@ -1,7 +1,21 @@
+"use client";
+
 import { SlideFadeIn } from "./SlideFadeIn";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const AboutMe = () => {
+  const [direction, setDirection] = useState<"left" | "right">("right");
+
+  useEffect(() => {
+    const updateDirection = () => {
+      setDirection(window.innerWidth >= 768 ? "right" : "left");
+    };
+
+    updateDirection(); // initial check
+    window.addEventListener("resize", updateDirection);
+    return () => window.removeEventListener("resize", updateDirection);
+  }, []);
+
   return (
     <div className="flex flex-col items-center">
       <h2 className="text-4xl sm:text-5xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-6xl font-header">
@@ -11,7 +25,7 @@ const AboutMe = () => {
       <div className="mt-2 w-95 sm:w-120 md:w-70 lg:w-100 2xl:lg:w-120 text-sm sm:text-base md:text-base lg:text-xl">
         <SlideFadeIn
           index={0}
-          direction="right"
+          direction={direction}
           inMargin="-100px"
           outMargin="-80px"
         >
@@ -22,7 +36,7 @@ const AboutMe = () => {
         </SlideFadeIn>
         <SlideFadeIn
           index={1}
-          direction="right"
+          direction={direction}
           inMargin="-100px"
           outMargin="-80px"
         >
@@ -33,7 +47,7 @@ const AboutMe = () => {
         </SlideFadeIn>
         <SlideFadeIn
           index={2}
-          direction="right"
+          direction={direction}
           inMargin="-100px"
           outMargin="-80px"
         >
@@ -41,7 +55,7 @@ const AboutMe = () => {
         </SlideFadeIn>
         <SlideFadeIn
           index={3}
-          direction="right"
+          direction={direction}
           inMargin="-100px"
           outMargin="-80px"
         >
