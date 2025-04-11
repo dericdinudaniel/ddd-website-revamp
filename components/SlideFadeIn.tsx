@@ -11,6 +11,7 @@ export function SlideFadeIn({
   index = 0,
   children,
   duration = 0.5,
+  delay = 0,
   inMargin = "-50px",
   outMargin = "-120px",
   direction = "left",
@@ -20,6 +21,7 @@ export function SlideFadeIn({
   className?: string;
   index?: number;
   duration?: number;
+  delay?: number;
   inMargin?: string;
   outMargin?: string;
   direction?: SlideDirection;
@@ -55,7 +57,7 @@ export function SlideFadeIn({
       ref={ref}
       initial="hidden"
       animate={controls}
-      transition={{ duration }}
+      transition={{ duration, delay }}
       variants={animationVariants}
       style={{ willChange: "transform, opacity, filter" }}
     >
